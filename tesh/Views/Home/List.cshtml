@@ -1,0 +1,70 @@
+﻿@model IEnumerable<tesh.Models.Alumnos>
+@{
+    ViewData["Title"] = "List";
+}
+<h2>Clientes</h2>
+<footer>
+    <img src="~/images/yoga3.jpg" width="900" height="185" />
+</footer>
+<p>
+    <a asp-action="Create" class="btn btn-sm">Nuevo Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreAlumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoAlumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calificacion)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.FechaNacimientoAlumno)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreAlumno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApellidoAlumno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Calificacion)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.FechaNacimientoAlumno)
+                    </td>*@
+                <td>
+                    <strong>
+                    @Html.ActionLink("Editar", "Update", new { id = item.id })|
+
+                    @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                    <form asp-action="Details" method="post" asp-route-id="@item.id">
+                        <button>Detalles</button>
+                    </form>
+
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                    <form asp-action="Delete" method="post" asp-route-id="@item.id">
+                        <button>Eliminar</button>
+                    </form>
+                        </strong>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
