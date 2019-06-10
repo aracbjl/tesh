@@ -34,7 +34,7 @@ namespace TESHCore.Controllers
                 string connectionString = Configuration["ConnectionStrings:SQLConnection"];
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string sql = $"Insert Into Alumnos (NombreAlumno, ApellidoAlumno, CalificacionAlumno) Values ('{alumno.NombreAlumno}', '{alumno.ApellidoAlumno}','{alumno.Calificacion}')";
+                    string sql = $"Insert Into Cliente (NombreAlumno, ApellidoAlumno, CalificacionAlumno) Values ('{alumno.NombreAlumno}', '{alumno.ApellidoAlumno}','{alumno.Calificacion}')";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.CommandType = CommandType.Text;
@@ -59,7 +59,7 @@ namespace TESHCore.Controllers
                 //SqlDataReader
                 connection.Open();
 
-                string sql = "Select * From Alumnos"; SqlCommand command = new SqlCommand(sql, connection);
+                string sql = "Select * From Cliente"; SqlCommand command = new SqlCommand(sql, connection);
                 using (SqlDataReader dataReader = command.ExecuteReader())
                 {
                     while (dataReader.Read())
@@ -85,7 +85,7 @@ namespace TESHCore.Controllers
             Alumnos alumno = new Alumnos();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string sql = $"Select * From Alumnos Where Id='{id}'";
+                string sql = $"Select * From Cliente Where Id='{id}'";
                 SqlCommand command = new SqlCommand(sql, connection);
                 connection.Open();
                 using (SqlDataReader dataReader = command.ExecuteReader())
